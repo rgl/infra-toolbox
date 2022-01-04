@@ -1,0 +1,4 @@
+.vagrant/
+tmp/
+*.log
+secrets.sh
