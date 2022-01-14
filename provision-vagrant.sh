@@ -19,6 +19,18 @@ cat >/etc/profile.d/env-ssl-cert-file.sh <<'EOF'
 export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 EOF
 
+# add support for nfs shared folders.
+apt-get install -y nfs-kernel-server
+# enable password-less configuration of the nfs server exports.
+cat >/etc/sudoers.d/vagrant-synced-folders <<'EOF'
+Cmnd_Alias VAGRANT_EXPORTS_CHOWN = /bin/chown 0\:0 /tmp/*
+Cmnd_Alias VAGRANT_EXPORTS_MV = /bin/mv -f /tmp/* /etc/exports
+Cmnd_Alias VAGRANT_NFSD_CHECK = /etc/init.d/nfs-kernel-server status
+Cmnd_Alias VAGRANT_NFSD_START = /etc/init.d/nfs-kernel-server start
+Cmnd_Alias VAGRANT_NFSD_APPLY = /usr/sbin/exportfs -ar
+%sudo ALL=(root) NOPASSWD: VAGRANT_EXPORTS_CHOWN, VAGRANT_EXPORTS_MV, VAGRANT_NFSD_CHECK, VAGRANT_NFSD_START, VAGRANT_NFSD_APPLY
+EOF
+
 # add support for smb shared folders.
 # see https://github.com/hashicorp/vagrant/pull/9948
 pushd /opt/vagrant/embedded/gems/$vagrant_version/gems/vagrant-$vagrant_version
@@ -62,4 +74,17 @@ set -euxo pipefail
 vagrant plugin install vagrant-vsphere
 vagrant plugin install vagrant-windows-sysprep
 vagrant plugin install vagrant-reload
+EOF_VAGRANT
+
+# if nested virtualization is not available, bail.
+if [ -z "$(grep ' vmx ' /proc/cpuinfo)" ]; then
+    exit 0
+fi
+
+# install the vagrant libvirt plugin.
+apt-get install -y libvirt-dev gcc make
+su $provision_username -l -c bash <<'EOF_VAGRANT'
+set -euxo pipefail
+CONFIGURE_ARGS='with-libvirt-include=/usr/include/libvirt with-libvirt-lib=/usr/lib' \
+    vagrant plugin install vagrant-libvirt
 EOF_VAGRANT

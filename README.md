@@ -1,6 +1,6 @@
 # About
 
-This is a vagrant environment for remotely launching infrastructure using:
+This is a vagrant environment for launching infrastructure using:
 
 * Packer
 * Terraform
@@ -13,6 +13,10 @@ In:
 
 * Azure
 * VMware vSphere
+
+And, using nested virtualization, in:
+
+* KVM/libvirt
 
 # Usage
 
@@ -166,3 +170,7 @@ ansible-playbook playbook.yml #-vvv
 * VMware vSphere:
   * https://github.com/rgl/terraform-vsphere-ubuntu-example
   * https://github.com/rgl/terraform-vsphere-windows-example
+* KVM/libvirt:
+  * https://github.com/rgl/debian-vagrant
+  * https://github.com/rgl/ubuntu-vagrant
+  * https://github.com/rgl/windows-vagrant
