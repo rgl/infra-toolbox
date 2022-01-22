@@ -4,7 +4,7 @@ set -euxo pipefail
 
 # install the powercli powershell module.
 # see https://www.powershellgallery.com/packages/VMware.PowerCLI
-# see https://developer.vmware.com/web/tool/12.4/vmware-powercli
+# see https://developer.vmware.com/web/tool/12.5/vmware-powercli
 pwsh -NonInteractive -File /dev/stdin <<'EOF'
 Set-StrictMode -Version Latest
 $ProgressPreference = 'SilentlyContinue'
@@ -18,7 +18,7 @@ trap {
 Write-Output 'Installing the VMware.PowerCLI module...'
 Install-Module -Force -Scope AllUsers `
     -Name VMware.PowerCLI `
-    -RequiredVersion 12.4.1.18769701
+    -RequiredVersion 12.5.0.19195797
 Write-Output 'Configuring the VMware.PowerCLI module...'
 Set-PowerCLIConfiguration -Scope AllUsers `
     -ParticipateInCEIP $false `
