@@ -175,6 +175,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, path: 'provision-k9s.sh'
   config.vm.provision :shell, path: 'provision-azure-cli.sh'
   config.vm.provision :shell, path: 'provision-govc.sh'
+  config.vm.provision :shell, path: 'provision-ovftool.sh'
   config.vm.provision :shell, path: 'provision-vmware-powercli.sh'
   config.vm.provision :shell, path: 'provision-vagrant.sh', args: [VAGRANT_USERNAME, VAGRANT_PASSWORD]
 end
