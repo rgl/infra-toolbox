@@ -2,7 +2,7 @@
 source /vagrant/lib.sh
 
 # see https://kubernetes.io/releases/
-kubernetes_version="${1:-1.23.1}"; shift || true
+kubernetes_version="${1:-1.23.3}"; shift || true
 
 # install.
 # see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
