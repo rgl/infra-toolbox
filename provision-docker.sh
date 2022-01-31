@@ -2,6 +2,7 @@
 source /vagrant/lib.sh
 
 
+# see https://github.com/moby/moby/releases
 docker_version='20.10.12'
 
 
