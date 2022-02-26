@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-terraform_version='1.1.5'                     # see https://github.com/hashicorp/terraform/releases
+terraform_version='1.1.6'                     # see https://github.com/hashicorp/terraform/releases
 ansible_terraform_inventory_version='2.2.0'   # see https://github.com/nbering/terraform-inventory/releases
 
 # install terraform.
