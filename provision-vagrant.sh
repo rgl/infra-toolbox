@@ -1,8 +1,8 @@
 #!/bin/bash
 set -euxo pipefail
 
-provision_username="$1"; shift
-provision_password="$1"; shift
+provision_username="${1:-vagrant}"; shift || true
+provision_password="${1:-vagrant}"; shift || true
 
 # install Vagrant.
 # see https://github.com/hashicorp/vagrant/tags.
