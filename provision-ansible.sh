@@ -1,6 +1,9 @@
 #!/bin/bash
 source /vagrant/lib.sh
 
+# make sure the package index cache is up-to-date before installing anything.
+apt-get update
+
 # install ansible.
 # see https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-with-pip
 apt-get install -y --no-install-recommends \
