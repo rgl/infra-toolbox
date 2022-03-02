@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 install -m 700 -d ~/.docker
 install -m 600 /dev/null ~/.docker/config.json

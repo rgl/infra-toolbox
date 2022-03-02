@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 provision_username="${1:-vagrant}"; shift || true
 provision_password="${1:-vagrant}"; shift || true

@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 docker_compose_version="${1:-v2.2.3}"; shift || true
 

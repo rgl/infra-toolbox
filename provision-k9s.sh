@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # see https://github.com/derailed/k9s/releases
 k9s_version="${1:-v0.25.18}"; shift || true

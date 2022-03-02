@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # see https://github.com/hashicorp/packer/releases
 packer_version='1.7.10'

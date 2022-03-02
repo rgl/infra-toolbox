@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # NB execute apt-cache madison azure-cli to known the available versions.
 # see https://github.com/Azure/azure-cli/releases

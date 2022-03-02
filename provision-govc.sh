@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # see https://github.com/vmware/govmomi/releases
 govc_version='0.27.4'

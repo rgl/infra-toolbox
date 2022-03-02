@@ -1,5 +1,5 @@
 #!/bin/bash
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # see https://github.com/rgl/ovftool-binaries
 version='4.4.3-18663434'

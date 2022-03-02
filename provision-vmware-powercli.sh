@@ -1,6 +1,5 @@
 #!/bin/bash
-# abort this script on errors.
-set -euxo pipefail
+source /vagrant/lib.sh
 
 # install the powercli powershell module.
 # see https://www.powershellgallery.com/packages/VMware.PowerCLI
