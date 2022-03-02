@@ -3,21 +3,17 @@ set -eu -o pipefail -o errtrace
 
 
 function err_trap {
-    local err=$?
-    local i=0
-    local line_number
-    local function_name
-    local file_name
-
-    set +e
-
-    echo "ERROR: Trap exit code $err at:" >&2
-
-    while caller $i; do ((i++)); done | while read line_number function_name file_name; do
-        echo "ERROR: $file_name:$line_number $function_name"
-    done >&2
-
-    exit $err
+    local err="$?"
+    set +o xtrace
+    local exit_code="${1:-1}"
+    echo "ERROR: ${BASH_COMMAND} exited with status $err at:" >&2
+    echo "       ${BASH_SOURCE[1]}:${BASH_LINENO[0]}" >&2
+    if [ ${#FUNCNAME[@]} -gt 2 ]; then
+        for (( i=1; i<${#FUNCNAME[@]}-1; i++ )); do
+            echo "       ${BASH_SOURCE[$i+1]}:${BASH_LINENO[$i]} ${FUNCNAME[$i]}" >&2
+        done
+    fi
+    exit "$exit_code"
 }
 
 trap err_trap ERR
