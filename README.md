@@ -155,8 +155,8 @@ ansible-playbook playbook.yml #-vvv
 
 ## Example Repositories
 
-* Packer/Ansible/Ubuntu/Windows:
-  * https://github.com/rgl/packer-qemu-ansible-ubuntu-example
+* Packer/Ansible/Debian/Windows:
+  * https://github.com/rgl/packer-qemu-ansible-debian-example
   * https://github.com/rgl/packer-qemu-ansible-windows-example
   * https://github.com/rgl/debian-router-ansible-vagrant
   * https://github.com/rgl/windows-router-ansible-vagrant
