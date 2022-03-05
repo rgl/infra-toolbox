@@ -1,5 +1,7 @@
 - hosts: localhost
-  gather_facts: no
+  gather_facts: yes
   become: yes
   roles:
     - base
+    - role: kvm
+      when: "'kvm' in ansible_virtualization_tech_host"
