@@ -46,6 +46,7 @@
       - python3-tabulate
       - bash-completion
       - p7zip-full
+      - patch
       # iso creation tool.
       # NB xorriso is compatible with genisoimage and mkisofs and is also available in msys2 (windows).
       - xorriso

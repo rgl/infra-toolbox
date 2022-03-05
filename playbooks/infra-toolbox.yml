@@ -10,3 +10,4 @@
     - azure-client
     - packer
     - terraform
+    - vagrant

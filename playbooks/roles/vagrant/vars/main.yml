@@ -1,0 +1,5 @@
+# see https://github.com/hashicorp/vagrant/releases
+vagrant_version: '2.2.19'
+
+provision_username: vagrant
+provision_password: vagrant

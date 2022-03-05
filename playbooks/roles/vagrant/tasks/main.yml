@@ -1,0 +1,64 @@
+- name: Ensure apt-get can use https repositories
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+
+- name: Add the hashicorp apt key
+  apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
+
+# see https://www.vagrantup.com/downloads
+- name: Add the hashicorp repository
+  apt_repository:
+    repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+    mode: 0600
+
+# see https://www.vagrantup.com/downloads
+# see https://github.com/hashicorp/vagrant/releases
+# NB execute apt-cache madison vagrant to known the available versions.
+- name: Install vagrant
+  apt:
+    name: vagrant={{ vagrant_version }}
+
+- name: Use the system ca certificates
+  file:
+    src: /etc/ssl/certs/ca-certificates.crt
+    dest: /opt/vagrant/embedded/cacert.pem
+    force: yes
+    state: link
+
+- name: Add support for NFS shared folders
+  block:
+    - name: Install NFS server
+      apt:
+        name: nfs-kernel-server
+    # see https://www.vagrantup.com/docs/synced-folders/nfs#root-privilege-requirement
+    - name: Enable password-less configuration of the NFS server exports
+      copy:
+        src: vagrant-nfs-synced-folders
+        dest: /etc/sudoers.d/vagrant-nfs-synced-folders
+
+# see https://github.com/hashicorp/vagrant/pull/9948
+- name: Add support for SMB shared folders
+  block:
+    - name: Patch vagrant to support SMB shared folders
+      ansible.posix.patch:
+        src: vagrant-smb-9948.patch
+        basedir: /opt/vagrant/embedded/gems/{{ vagrant_version }}/gems/vagrant-{{ vagrant_version }}
+        strip: 1
+    - name: Install Samba
+      apt:
+        name:
+          - samba
+          - smbclient
+    - name: Set the provision user password
+      args:
+        executable: /bin/bash
+      shell: |
+        smbpasswd -a -s '{{ provision_username }}' <<EOF
+        {{ provision_password }}
+        {{ provision_password }}
+        EOF
+      register: TODO
+      changed_when: false
