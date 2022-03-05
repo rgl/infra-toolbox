@@ -1,0 +1,2 @@
+# see https://github.com/hashicorp/packer/releases
+packer_version: '1.7.10'

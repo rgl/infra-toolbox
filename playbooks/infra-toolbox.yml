@@ -8,3 +8,4 @@
     - docker
     - powershell
     - azure-client
+    - packer
