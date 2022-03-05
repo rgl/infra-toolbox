@@ -32,11 +32,23 @@ Enter the vagrant environment:
 vagrant ssh
 ```
 
-Create an example playbook and inventory:
+Create an example inventory and playbook:
 
 ```bash
 mkdir ubuntu-example
 cd ubuntu-example
+cat >inventory.yml <<'EOF'
+all:
+  children:
+    example:
+      hosts:
+        192.168.192.123:
+  vars:
+    # connection configuration.
+    # see https://docs.ansible.com/ansible-core/2.12/collections/ansible/builtin/ssh_connection.html
+    ansible_user: vagrant
+    ansible_password: vagrant
+EOF
 cat >ansible.cfg <<'EOF'
 [defaults]
 inventory = inventory.yml
@@ -56,18 +68,6 @@ cat >playbook.yml <<'EOF'
     - name: Install tcpdump
       apt:
         name: tcpdump
-EOF
-cat >inventory.yml <<'EOF'
-all:
-  children:
-    example:
-      hosts:
-        192.168.192.123:
-  vars:
-    # connection configuration.
-    # see https://docs.ansible.com/ansible-core/2.12/collections/ansible/builtin/ssh_connection.html
-    ansible_user: vagrant
-    ansible_password: vagrant
 EOF
 ```
 
@@ -94,27 +94,11 @@ Enter the vagrant environment:
 vagrant ssh
 ```
 
-Create an example playbook and inventory:
+Create an example inventory and playbook:
 
 ```bash
 mkdir windows-example
 cd windows-example
-cat >ansible.cfg <<'EOF'
-[defaults]
-inventory = inventory.yml
-stdout_callback = community.general.yaml
-EOF
-cat >playbook.yml <<'EOF'
-- hosts: example
-  gather_facts: no
-  tasks:
-    - name: Install Chocolatey
-      chocolatey.chocolatey.win_chocolatey:
-        name: chocolatey
-    - name: Install Notepad3
-      chocolatey.chocolatey.win_chocolatey:
-        name: notepad3
-EOF
 cat >inventory.yml <<'EOF'
 all:
   children:
@@ -133,6 +117,22 @@ all:
     ansible_psrp_auth: credssp
     # NB ansible does not yet support PowerShell 7.
     #ansible_psrp_configuration_name: PowerShell.7 
+EOF
+cat >ansible.cfg <<'EOF'
+[defaults]
+inventory = inventory.yml
+stdout_callback = community.general.yaml
+EOF
+cat >playbook.yml <<'EOF'
+- hosts: example
+  gather_facts: no
+  tasks:
+    - name: Install Chocolatey
+      chocolatey.chocolatey.win_chocolatey:
+        name: chocolatey
+    - name: Install Notepad3
+      chocolatey.chocolatey.win_chocolatey:
+        name: notepad3
 EOF
 ```
 
