@@ -2,6 +2,9 @@ ENV['VAGRANT_EXPERIMENTAL'] = 'typed_triggers'
 
 require './lib.rb'
 
+VM_MEMORY_MB = 8*1024
+VM_CPUS = 4
+
 # get the docker hub auth from the host ~/.docker/config.json file.
 DOCKER_HUB_AUTH = get_docker_hub_auth
 
@@ -12,8 +15,8 @@ Vagrant.configure(2) do |config|
   config.vm.hostname = 'infra-toolbox.test'
 
   config.vm.provider 'libvirt' do |lv, config|
-    lv.memory = 2048
-    lv.cpus = 2
+    lv.memory = VM_MEMORY_MB
+    lv.cpus = VM_CPUS
     lv.cpu_mode = 'host-passthrough'
     lv.nested = true # nested virtualization.
     lv.keymap = 'pt'
@@ -22,15 +25,15 @@ Vagrant.configure(2) do |config|
 
   config.vm.provider 'virtualbox' do |vb, config|
     vb.linked_clone = true
-    vb.memory = 2048
-    vb.cpus = 2
+    vb.memory = VM_MEMORY_MB
+    vb.cpus = VM_CPUS
   end
 
   config.vm.provider 'hyperv' do |hv, config|
     hv.vmname = File.basename(File.dirname(__FILE__))
     hv.linked_clone = true
-    hv.memory = 2048
-    hv.cpus = 2
+    hv.memory = VM_MEMORY_MB
+    hv.cpus = VM_CPUS
     hv.enable_virtualization_extensions = true # nested virtualization.
     hv.vlan_id = ENV['HYPERV_VLAN_ID']
     # see https://github.com/hashicorp/vagrant/issues/7915
@@ -69,8 +72,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider 'vsphere' do |vsphere, override|
     vsphere.name = ENV['VSPHERE_VM_NAME']
     vsphere.notes = "Created from #{__FILE__}"
-    vsphere.cpu_count = 2
-    vsphere.memory_mb = 2*1024
+    vsphere.memory_mb = VM_MEMORY_MB
+    vsphere.cpu_count = VM_CPUS
     vsphere.user = ENV['GOVC_USERNAME']
     vsphere.password = ENV['GOVC_PASSWORD']
     vsphere.insecure = true
