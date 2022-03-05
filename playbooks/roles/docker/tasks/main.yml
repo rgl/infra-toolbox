@@ -1,0 +1,54 @@
+- name: Ensure apt-get can use https repositories
+  apt:
+    name:
+      - apt-transport-https
+      - gnupg
+    state: present
+
+- name: Add the docker apt key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+# see https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository
+- name: Add the docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+    mode: 0600
+    state: present
+
+# see https://github.com/moby/moby/releases
+# NB execute apt-cache madison docker-ce to known the available versions.
+- name: Install docker
+  apt:
+    name:
+      - docker-ce=5:{{ docker_version }}~*
+      - docker-ce-cli=5:{{ docker_version }}~*
+    state: present
+
+- name: Install daemon.json
+  copy:
+    src: daemon.json
+    dest: /etc/docker/daemon.json
+  notify:
+    - restart docker
+
+- name: Install docker.service.d directory
+  file:
+    name: /etc/systemd/system/docker.service.d
+    state: directory
+
+- name: Install daemon service override
+  copy:
+    src: override.conf
+    dest: /etc/systemd/system/docker.service.d/override.conf
+  notify:
+    - restart docker
+
+- name: Allow user to use docker
+  user:
+    name: "{{ item }}"
+    groups: docker
+    append: yes
+  loop:
+    - vagrant

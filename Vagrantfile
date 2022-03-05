@@ -93,7 +93,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, inline: 'cloud-init status --long --wait', name: 'wait for cloud-init to finish'
   config.vm.provision :shell, path: 'provision-ansible.sh', name: 'ansible'
   config.vm.provision :shell, path: 'provision.sh', name: 'ansible playbook'
-  config.vm.provision :shell, path: 'provision-docker.sh'
   config.vm.provision :shell, path: 'provision-docker-hub-auth.sh', env: {'DOCKER_HUB_AUTH' => DOCKER_HUB_AUTH} if DOCKER_HUB_AUTH
   config.vm.provision :shell, path: 'provision-docker-compose.sh'
   config.vm.provision :shell, path: 'provision-powershell.sh'
