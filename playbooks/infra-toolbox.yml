@@ -9,3 +9,4 @@
     - powershell
     - azure-client
     - packer
+    - terraform
