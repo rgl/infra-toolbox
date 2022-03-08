@@ -20,8 +20,8 @@ python3 -m pip install \
 ansible-galaxy collection install \
     -r /vagrant/ansible-requirements.yml \
     -p /usr/share/ansible/collections
-install -d /etc/ansible
-install /vagrant/ansible.cfg /etc/ansible
+install -d -m 755 /etc/ansible
+install -m 644 /vagrant/ansible.cfg /etc/ansible
 ansible --version
 ansible -m ping localhost
 
