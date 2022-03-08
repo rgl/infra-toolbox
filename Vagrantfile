@@ -100,9 +100,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, path: 'provision-vagrant-plugins.sh', name: 'vagrant plugins'
   config.vm.provision :shell, path: 'provision-docker-hub-auth.sh', env: {'DOCKER_HUB_AUTH' => DOCKER_HUB_AUTH} if DOCKER_HUB_AUTH
   config.vm.provision :shell, path: 'provision-docker-compose.sh'
-  config.vm.provision :shell, path: 'provision-kubectl.sh'
-  config.vm.provision :shell, path: 'provision-helm.sh'
-  config.vm.provision :shell, path: 'provision-k9s.sh'
   config.vm.provision :shell, path: 'provision-govc.sh'
   config.vm.provision :shell, path: 'provision-ovftool.sh'
   config.vm.provision :shell, path: 'provision-vmware-powercli.sh'
