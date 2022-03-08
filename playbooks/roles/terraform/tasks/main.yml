@@ -16,7 +16,37 @@
 
 # see https://www.terraform.io/downloads
 # see https://github.com/hashicorp/terraform/releases
-# NB execute apt-cache madison packer to known the available versions.
+# NB execute apt-cache madison terraform to known the available versions.
 - name: Install terraform
   apt:
     name: terraform={{ terraform_version }}
+
+# see https://github.com/nbering/terraform-inventory
+- name: Install terraform inventory
+  block:
+    - name: Check terraform inventory version
+      lineinfile:
+        path: /etc/ansible/terraform.py
+        line: '# version={{ terraform_inventory_version }}'
+        create: true
+      diff: false
+      check_mode: true
+      register: check
+    - name: Install terraform inventory
+      block:
+        - name: Install terraform inventory
+          get_url:
+            url: "https://github.com/nbering/terraform-inventory/releases/download/v{{ terraform_inventory_version }}/terraform.py"
+            dest: /etc/ansible/terraform.py
+            mode: 0755
+            force: true
+        - name: Patch terraform inventory
+          ansible.posix.patch:
+            src: terraform-inventory.patch
+            basedir: /etc/ansible
+        - name: Add terraform inventory version
+          lineinfile:
+            path: /etc/ansible/terraform.py
+            insertafter: '^#!'
+            line: '# version={{ terraform_inventory_version }}'
+      when: check.changed
