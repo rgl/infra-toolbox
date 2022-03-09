@@ -28,6 +28,13 @@
     force: yes
     state: link
 
+- name: Install vagrant bash completion
+  file:
+    src: /opt/vagrant/embedded/gems/{{ vagrant_version }}/gems/vagrant-{{ vagrant_version }}/contrib/bash/completion.sh
+    dest: /etc/bash_completion.d/vagrant
+    force: yes
+    state: link
+
 - name: Add support for NFS shared folders
   block:
     - name: Install NFS server
