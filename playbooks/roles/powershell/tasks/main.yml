@@ -20,7 +20,7 @@
       fi
     fi
   register: powershell
-  changed_when: "'ANSIBLE CHANGED NO' not in result.stdout_lines"
+  changed_when: "'ANSIBLE CHANGED NO' not in powershell.stdout_lines"
 
 # see https://github.com/PowerShell/PowerShell/releases
 # see https://docs.microsoft.com/en-us/powershell/scripting/install/install-ubuntu?view=powershell-7.2#installation-via-direct-download
