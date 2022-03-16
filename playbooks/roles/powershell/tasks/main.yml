@@ -11,12 +11,11 @@
     executable: /bin/bash
   shell: |
     set -euo pipefail
-    powershell_version='v{{ powershell_version }}'
+    powershell_version='{{ powershell_version }}'
     if [ -f /usr/bin/pwsh ]; then
       actual_version="$(/usr/bin/pwsh --version | perl -ne '/^PowerShell (.+)/ && print $1')"
       if [ "$actual_version" == "$powershell_version" ]; then
         echo 'ANSIBLE CHANGED NO'
-        exit 0
       fi
     fi
   register: powershell
