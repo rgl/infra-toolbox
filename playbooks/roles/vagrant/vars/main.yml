@@ -1,4 +1,4 @@
-# see https://github.com/hashicorp/vagrant/releases
+# see https://github.com/hashicorp/vagrant/tags
 vagrant_version: '2.2.19'
 
 # see https://rubygems.org/gems/vagrant-libvirt
