@@ -18,7 +18,7 @@ In:
 
 And, using nested virtualization, in:
 
-* KVM/libvirt
+* QEMU/KVM/libvirt
 
 # Usage
 
