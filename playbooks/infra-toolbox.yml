@@ -13,4 +13,5 @@
     - packer
     - terraform
     - vagrant
+    - cue
     - dagger

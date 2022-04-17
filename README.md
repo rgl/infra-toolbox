@@ -3,6 +3,7 @@
 This is a vagrant environment for launching infrastructure using:
 
 * Ansible
+* Cue
 * Dagger
 * Helm
 * Kubectl
