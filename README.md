@@ -2,12 +2,13 @@
 
 This is a vagrant environment for launching infrastructure using:
 
-* Packer
-* Terraform
 * Ansible
-* Vagrant
+* Dagger
 * Helm
 * Kubectl
+* Packer
+* Terraform
+* Vagrant
 
 In:
 
