@@ -62,12 +62,18 @@
       args:
         executable: /bin/bash
       shell: |
-        smbpasswd -a -s '{{ provision_username }}' <<EOF
+        smbpasswd -a -s '{{ provision_username }}' <<'EOF'
         {{ provision_password }}
         {{ provision_password }}
         EOF
-      register: TODO
       changed_when: false
+    - name: Allow user to manage samba shares
+      user:
+        name: "{{ item }}"
+        groups: sambashare
+        append: yes
+      loop:
+        - '{{ provision_username }}'
 
 - name: Install vagrant plugins
   block:
