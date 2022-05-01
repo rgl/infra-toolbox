@@ -1,3 +1,4 @@
+# see https://github.com/hashicorp/vagrant/pull/9948
 From ed7139fa1e896d0b84ed32180b72a647bf9f37eb Mon Sep 17 00:00:00 2001
 From: Rui Lopes <rgl@ruilopes.com>
 Date: Sun, 24 Jun 2018 14:13:52 +0100
