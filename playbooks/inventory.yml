@@ -3,4 +3,6 @@ all:
     local:
       hosts:
         localhost:
+          ansible_user: vagrant
+          ansible_password: vagrant
           ansible_connection: local

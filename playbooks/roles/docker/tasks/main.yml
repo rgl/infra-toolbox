@@ -50,7 +50,7 @@
     groups: docker
     append: yes
   loop:
-    - vagrant
+    - '{{ ansible_user }}'
 
 - name: Install docker-compose
   args:

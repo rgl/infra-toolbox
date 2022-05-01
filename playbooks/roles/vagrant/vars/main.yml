@@ -21,5 +21,5 @@ vagrant_vsphere_plugin_version: '1.13.5'
 # see https://github.com/rgl/vagrant-windows-sysprep
 vagrant_windows_sysprep_plugin_version: '0.0.10'
 
-provision_username: vagrant
-provision_password: vagrant
+provision_username: '{{ ansible_user }}'
+provision_password: '{{ ansible_password }}'
