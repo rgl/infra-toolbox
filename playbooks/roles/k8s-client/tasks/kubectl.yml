@@ -8,7 +8,6 @@
 - name: Add the kubernetes repository
   apt_repository:
     repo: deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
-    mode: 0600
     state: present
 
 # NB execute apt-cache madison kubectl to known the available versions.
