@@ -1,6 +1,7 @@
 - name: Install powercli
   args:
     executable: /bin/pwsh
+  # noqa risky-shell-pipe
   ansible.builtin.shell: |
     Set-StrictMode -Version Latest
     $ProgressPreference = 'SilentlyContinue'
