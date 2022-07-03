@@ -19,11 +19,21 @@
 # see https://github.com/moby/moby/releases
 # NB execute apt-cache madison docker-ce to known the available versions.
 - name: Install docker
-  ansible.builtin.apt:
-    name:
-      - docker-ce=5:{{ docker_version }}~*
-      - docker-ce-cli=5:{{ docker_version }}~*
-    state: present
+  block:
+    - name: Install docker
+      ansible.builtin.apt:
+        name:
+          - docker-ce=5:{{ docker_version }}~*
+          - docker-ce-cli=5:{{ docker_version }}~*
+        allow_change_held_packages: true
+        state: present
+    - name: Pin docker
+      ansible.builtin.dpkg_selections:
+        name: '{{ item }}'
+        selection: hold
+      loop:
+        - docker-ce
+        - docker-ce-cli
 
 - name: Install daemon.json
   ansible.builtin.copy:

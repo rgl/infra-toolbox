@@ -2,19 +2,23 @@
   ansible.builtin.apt_key:
     url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
     keyring: /usr/share/keyrings/kubernetes-archive-keyring.gpg
-    state: present
 
 # see https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management
 - name: Add the kubernetes repository
   ansible.builtin.apt_repository:
     repo: deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main
-    state: present
 
 # NB execute apt-cache madison kubectl to known the available versions.
 - name: Install kubectl
-  ansible.builtin.apt:
-    name: kubectl={{ kubectl_version }}-*
-    state: present
+  block:
+    - name: Install kubectl
+      ansible.builtin.apt:
+        name: kubectl={{ kubectl_version }}-*
+        allow_change_held_packages: true
+    - name: Pin kubectl
+      ansible.builtin.dpkg_selections:
+        name: kubectl
+        selection: hold
 
 - name: Install kubectl bash completion
   block:

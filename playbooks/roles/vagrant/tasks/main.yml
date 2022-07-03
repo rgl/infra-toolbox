@@ -13,12 +13,33 @@
   ansible.builtin.apt_repository:
     repo: deb [arch=amd64] https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
 
+# pin the hashicorp repository above the distro ones.
+# see apt-cache policy
+# see apt-cache policy vagrant
+# see apt-cache showpkg vagrant
+# see http://manpages.ubuntu.com/manpages/jammy/en/man5/apt_preferences.5.html
+- name: Pin the hashicorp apt repository
+  ansible.builtin.copy:
+    dest: /etc/apt/preferences.d/apt.releases.hashicorp.com.pref
+    content: |
+      Package: *
+      Pin: origin "apt.releases.hashicorp.com"
+      Pin-Priority: 999
+    mode: 0444
+
 # see https://www.vagrantup.com/downloads
 # see https://github.com/hashicorp/vagrant/releases
 # NB execute apt-cache madison vagrant to known the available versions.
 - name: Install vagrant
-  ansible.builtin.apt:
-    name: vagrant={{ vagrant_version }}
+  block:
+    - name: Install vagrant
+      ansible.builtin.apt:
+        name: vagrant={{ vagrant_version }}
+        allow_change_held_packages: true
+    - name: Pin vagrant
+      ansible.builtin.dpkg_selections:
+        name: vagrant
+        selection: hold
 
 - name: Use the system ca certificates
   ansible.builtin.file:

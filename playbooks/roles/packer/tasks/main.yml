@@ -17,5 +17,12 @@
 # see https://github.com/hashicorp/packer/releases
 # NB execute apt-cache madison packer to known the available versions.
 - name: Install packer
-  ansible.builtin.apt:
-    name: packer={{ packer_version }}
+  block:
+    - name: Install packer
+      ansible.builtin.apt:
+        name: packer={{ packer_version }}
+        allow_change_held_packages: true
+    - name: Pin packer
+      ansible.builtin.dpkg_selections:
+        name: packer
+        selection: hold
