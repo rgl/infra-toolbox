@@ -1,7 +1,7 @@
 - name: Install powercli
   args:
     executable: /bin/pwsh
-  shell: |
+  ansible.builtin.shell: |
     Set-StrictMode -Version Latest
     $ProgressPreference = 'SilentlyContinue'
     $ErrorActionPreference = 'Stop'

@@ -1,9 +1,9 @@
 - name: Install kvm
-  apt:
+  ansible.builtin.apt:
     name: qemu-kvm
 
 - name: Install libvirt
-  apt:
+  ansible.builtin.apt:
     name: libvirt-daemon-system
 
 # configure the security_driver to prevent errors alike (when using terraform):
@@ -11,7 +11,7 @@
 # this is equivalent to:
 #   sed -i -E 's,#?(security_driver)\s*=.*,\1 = "none",g' /etc/libvirt/qemu.conf
 - name: Disable libvirt qemu security driver
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/libvirt/qemu.conf
     regexp: '^#?(security_driver)\s*=.*$'
     line: '\1 = "none"'
@@ -20,11 +20,11 @@
     - restart libvirtd
 
 - name: Install virtinst
-  apt:
+  ansible.builtin.apt:
     name: virtinst
 
 - name: Allow user to use kvm
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     groups: kvm
     append: yes
@@ -33,7 +33,7 @@
 
 # see /usr/share/polkit-1/rules.d/60-libvirt.rules
 - name: Allow user to use libvirt
-  user:
+  ansible.builtin.user:
     name: "{{ item }}"
     groups: libvirt
     append: yes
