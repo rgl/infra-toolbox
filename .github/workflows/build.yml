@@ -1,0 +1,17 @@
+name: build
+on:
+  - push
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install ansible
+        run: |
+          sudo ln -s $PWD /vagrant
+          sudo env GITHUB_ACTIONS=true bash provision-ansible.sh
+      - name: Lint the infra-toolbox.yml playbook
+        run: |
+          cd playbooks
+          ansible-lint --offline --parseable infra-toolbox.yml

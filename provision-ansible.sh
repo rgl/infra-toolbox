@@ -23,9 +23,13 @@ ansible-galaxy collection install \
 install -d -m 755 /etc/ansible
 install -m 644 /vagrant/ansible.cfg /etc/ansible
 ansible --version
+python3 -m pip list
+ansible-galaxy collection list
 ansible -m ping localhost
 
 # install the ansible shell completion helpers.
+if [ ! -v GITHUB_ACTIONS ]; then
 install -d /etc/bash_completion.d
 apt-get install -y python3-argcomplete
 activate-global-python-argcomplete3
+fi

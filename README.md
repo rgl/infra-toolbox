@@ -1,5 +1,7 @@
 # About
 
+[![Build status](https://github.com/rgl/infra-toolbox/workflows/build/badge.svg)](https://github.com/rgl/infra-toolbox/actions?query=workflow%3Abuild)
+
 This is a vagrant environment for launching infrastructure using:
 
 * Ansible
@@ -76,6 +78,7 @@ EOF
 Kick the tires:
 
 ```bash
+ansible-lint --offline --parseable infra-toolbox.yml
 ansible-inventory --list --yaml
 ansible -m ping all
 ansible -m gather_facts all
