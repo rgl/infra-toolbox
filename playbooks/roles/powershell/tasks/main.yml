@@ -27,4 +27,4 @@
 - name: Install PowerShell
   ansible.builtin.apt:
     deb: https://github.com/PowerShell/PowerShell/releases/download/v{{ powershell_version }}/powershell_{{ powershell_version }}-1.deb_amd64.deb
-  when: powershell.changed
+  when: powershell.changed # noqa no-handler
