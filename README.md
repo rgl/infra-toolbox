@@ -61,12 +61,12 @@ host_key_checking = False # NB only do this in test scenarios.
 EOF
 cat >playbook.yml <<'EOF'
 - hosts: example
-  gather_facts: no
-  become: yes
+  gather_facts: false
+  become: true
   tasks:
     - name: Update APT cache
       apt:
-        update_cache: yes
+        update_cache: true
         cache_valid_time: 10800 # 3h
       changed_when: false
     - name: Install tcpdump
@@ -130,7 +130,7 @@ stdout_callback = community.general.yaml
 EOF
 cat >playbook.yml <<'EOF'
 - hosts: example
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: Install Chocolatey
       chocolatey.chocolatey.win_chocolatey:

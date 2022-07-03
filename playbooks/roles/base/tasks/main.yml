@@ -1,6 +1,6 @@
 - name: Update APT cache
   ansible.builtin.apt:
-    update_cache: yes
+    update_cache: true
     cache_valid_time: 10800 # 3h
   changed_when: false
 
@@ -9,7 +9,7 @@
     - name: Install vim
       ansible.builtin.apt:
         name: vim
-        install_recommends: no
+        install_recommends: false
     - name: Install vimrc
       ansible.builtin.copy:
         src: vimrc.local
@@ -20,7 +20,7 @@
     - name: Install git
       ansible.builtin.apt:
         name: git
-        install_recommends: no
+        install_recommends: false
     - name: Install gitconfig
       ansible.builtin.copy:
         src: gitconfig
@@ -57,4 +57,4 @@
       # magic packet to its ethernet card.
       # e.g. etherwake -i eth1 00:e0:4c:01:93:a8
       - etherwake
-    install_recommends: no
+    install_recommends: false
