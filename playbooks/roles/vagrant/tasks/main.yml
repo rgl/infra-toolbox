@@ -44,6 +44,7 @@
       ansible.builtin.copy:
         src: vagrant-nfs-synced-folders
         dest: /etc/sudoers.d/vagrant-nfs-synced-folders
+        mode: 0400
 
 # see https://github.com/hashicorp/vagrant/pull/9948
 - name: Add support for SMB shared folders
@@ -66,6 +67,7 @@
             section: global
             option: disable netbios
             value: 'yes'
+            mode: 0444
           notify: reload samba
         - name: Disable the NETBIOS service
           ansible.builtin.systemd:

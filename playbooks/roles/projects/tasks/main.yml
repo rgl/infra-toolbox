@@ -5,6 +5,7 @@
       ansible.builtin.file:
         name: ~/Projects
         state: directory
+        mode: 0755
     - name: Clone ubuntu-vagrant
       ansible.builtin.git:
         repo: https://github.com/rgl/ubuntu-vagrant.git

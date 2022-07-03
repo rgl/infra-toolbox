@@ -14,6 +14,7 @@
       ansible.builtin.copy:
         src: vimrc.local
         dest: /etc/vim/vimrc.local
+        mode: 0444
 
 - name: Install git
   block:
@@ -25,16 +26,19 @@
       ansible.builtin.copy:
         src: gitconfig
         dest: /etc/gitconfig
+        mode: 0444
 
 - name: Install login profile
   ansible.builtin.copy:
     src: login.sh
     dest: /etc/profile.d/login.sh
+    mode: 0444
 
 - name: Install libreadline inputrc
   ansible.builtin.copy:
     src: inputrc
     dest: /etc/inputrc
+    mode: 0444
 
 - name: Install useful tools
   ansible.builtin.apt:
