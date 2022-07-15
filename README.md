@@ -24,7 +24,7 @@ And, using nested virtualization, in:
 
 # Usage
 
-See the [rgl/ubuntu-vagrant repository](https://github.com/rgl/ubuntu-vagrant) to known how to launch this environment using vagrant.
+See the [rgl/ubuntu-vagrant repository](https://github.com/rgl/ubuntu-vagrant) to known how to launch this Ubuntu 22.04 based environment using vagrant.
 
 Then follow one of the next sections example to known how to manage a remote machine using this environment tools.
 
