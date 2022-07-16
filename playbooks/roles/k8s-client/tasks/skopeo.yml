@@ -1,0 +1,11 @@
+# see https://github.com/containers/skopeo/blob/main/install.md
+
+- name: Install skopeo
+  ansible.builtin.apt:
+    name: skopeo
+
+- name: Install localhost-5000.conf
+  ansible.builtin.copy:
+    src: libcontainers-localhost-5000.conf
+    dest: /etc/containers/registries.conf.d/localhost-5000.conf
+    mode: 0444
