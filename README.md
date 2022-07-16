@@ -79,7 +79,7 @@ EOF
 Kick the tires:
 
 ```bash
-ansible-lint --offline --parseable infra-toolbox.yml
+ansible-lint --offline --parseable playbook.yml
 ansible-inventory --list --yaml
 ansible -m ping all
 ansible -m gather_facts all
@@ -145,6 +145,7 @@ EOF
 Kick the tires:
 
 ```bash
+ansible-lint --offline --parseable playbook.yml
 ansible-inventory --list --yaml
 ansible -m win_ping all
 ansible -m gather_facts all
