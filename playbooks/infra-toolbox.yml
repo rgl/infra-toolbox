@@ -7,6 +7,7 @@
       when: "'kvm' in ansible_virtualization_tech_host"
     - docker
     - powershell
+    - yq
     - k8s-client
     - azure-client
     - vmware-client
