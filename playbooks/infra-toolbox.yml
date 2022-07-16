@@ -10,6 +10,7 @@
     - yq
     - k8s-client
     - azure-client
+    - gcp-client
     - vmware-client
     - packer
     - terraform

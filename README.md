@@ -15,7 +15,8 @@ This is a vagrant environment for launching infrastructure using:
 
 In:
 
-* Azure
+* Microsoft Azure
+* Google Cloud Platform (GCP)
 * VMware vSphere
 
 And, using nested virtualization, in:

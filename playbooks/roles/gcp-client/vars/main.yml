@@ -1,0 +1,3 @@
+# see https://cloud.google.com/sdk/docs/install
+# NB execute apt-cache madison google-cloud-cli to known the available versions.
+gcloud_cli_version: '393.0.0'
