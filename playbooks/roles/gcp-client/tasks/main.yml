@@ -28,3 +28,16 @@
       ansible.builtin.dpkg_selections:
         name: google-cloud-cli
         selection: hold
+
+# NB execute apt-cache madison google-cloud-sdk-gke-gcloud-auth-plugin to known the available versions.
+- name: Install google-cloud-sdk-gke-gcloud-auth-plugin
+  block:
+    - name: Install google-cloud-sdk-gke-gcloud-auth-plugin
+      ansible.builtin.apt:
+        name: google-cloud-sdk-gke-gcloud-auth-plugin={{ gcloud_cli_version }}-*
+        allow_change_held_packages: true
+        state: present
+    - name: Pin google-cloud-sdk-gke-gcloud-auth-plugin
+      ansible.builtin.dpkg_selections:
+        name: google-cloud-sdk-gke-gcloud-auth-plugin
+        selection: hold
