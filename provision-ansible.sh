@@ -11,6 +11,7 @@ apt-get install -y --no-install-recommends \
     python3-cryptography \
     python3-openssl \
     python3-yaml \
+    python3-docker \
     pylint \
     sshpass
 # NB this pip install will display several "error: invalid command 'bdist_wheel'"
