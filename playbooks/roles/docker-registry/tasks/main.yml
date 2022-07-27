@@ -9,6 +9,19 @@
     state: directory
     mode: 0700
 
+- name: Create the registry configuration directory
+  ansible.builtin.file:
+    name: /opt/registry/etc
+    state: directory
+    mode: 0700
+
+- name: Create the registry configuration file
+  ansible.builtin.copy:
+    src: config.yml
+    dest: /opt/registry/etc/config.yml
+    mode: 0444
+  notify: restart registry
+
 - name: Create the registry container
   community.docker.docker_container:
     name: registry
@@ -18,3 +31,4 @@
       - 127.0.0.1:5000:5000/tcp
     volumes:
       - /opt/registry/data:/var/lib/registry
+      - /opt/registry/etc:/etc/docker/registry:ro
