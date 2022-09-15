@@ -9,3 +9,15 @@
     src: libcontainers-localhost-5000.conf
     dest: /etc/containers/registries.conf.d/localhost-5000.conf
     mode: 0444
+
+- name: Install skopeo bash completion
+  block:
+    - name: Get skopeo bash completion
+      ansible.builtin.command: skopeo completion bash
+      register: bash_completion
+      changed_when: false
+    - name: Install skopeo bash completion
+      ansible.builtin.copy:
+        content: "{{ bash_completion.stdout }}"
+        dest: /usr/share/bash-completion/completions/skopeo
+        mode: 0444
