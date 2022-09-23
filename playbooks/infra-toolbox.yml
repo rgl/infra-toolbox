@@ -1,4 +1,5 @@
-- hosts: localhost
+- name: Infra Toolbox
+  hosts: localhost
   gather_facts: true
   become: true
   roles:
