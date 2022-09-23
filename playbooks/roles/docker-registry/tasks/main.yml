@@ -20,7 +20,7 @@
     src: config.yml
     dest: /opt/registry/etc/config.yml
     mode: 0444
-  notify: restart registry
+  notify: Restart registry
 
 - name: Create the registry container
   community.docker.docker_container:
