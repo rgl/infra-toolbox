@@ -6,7 +6,7 @@ version="$CRANE_VERSION"
 
 # bail when already installed.
 if [ -x "/usr/local/bin/crane" ]; then
-  # e.g. 0.11.0
+  # e.g. 0.12.1
   actual_version="$(/usr/local/bin/crane version)"
   if [ "$actual_version" == "$version" ]; then
     echo 'ANSIBLE CHANGED NO'

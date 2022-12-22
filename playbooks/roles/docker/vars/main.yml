@@ -1,5 +1,5 @@
 # see https://github.com/moby/moby/releases
-docker_version: '20.10.18'
+docker_version: '20.10.22'
 
 # see https://github.com/docker/compose/releases
-docker_compose_version: '2.11.1'
+docker_compose_version: '2.14.2'
