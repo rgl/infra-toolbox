@@ -1,0 +1,14 @@
+- name: Install kubectl
+  ansible.builtin.include_tasks: kubectl.yml
+
+- name: Install k9s
+  ansible.builtin.include_tasks: k9s.yml
+
+- name: Install Helm
+  ansible.builtin.include_tasks: helm.yml
+
+- name: Install Skopeo
+  ansible.builtin.include_tasks: skopeo.yml
+
+- name: Install Crane
+  ansible.builtin.include_tasks: crane.yml

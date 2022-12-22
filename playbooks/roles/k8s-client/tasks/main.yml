@@ -1,5 +1,0 @@
-- include_tasks: kubectl.yml
-- include_tasks: k9s.yml
-- include_tasks: helm.yml
-- include_tasks: skopeo.yml
-- include_tasks: crane.yml

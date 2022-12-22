@@ -1,3 +1,0 @@
-- include_tasks: govc.yml
-- include_tasks: ovftool.yml
-- include_tasks: powercli.yml

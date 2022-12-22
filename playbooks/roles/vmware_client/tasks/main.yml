@@ -1,0 +1,8 @@
+- name: Install govc
+  ansible.builtin.include_tasks: govc.yml
+
+- name: Install ovftool
+  ansible.builtin.include_tasks: ovftool.yml
+
+- name: Install powercli
+  ansible.builtin.include_tasks: powercli.yml
