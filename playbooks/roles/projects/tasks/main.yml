@@ -1,5 +1,5 @@
 - name: Install Projects
-  become_user: vagrant
+  become_user: '{{ ansible_user }}'
   block:
     - name: Create the Projects directory
       ansible.builtin.file:
