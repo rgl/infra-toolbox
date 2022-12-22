@@ -50,7 +50,7 @@ all:
         192.168.192.123:
   vars:
     # connection configuration.
-    # see https://docs.ansible.com/ansible-core/2.13/collections/ansible/builtin/ssh_connection.html
+    # see https://docs.ansible.com/ansible-core/2.14/collections/ansible/builtin/ssh_connection.html
     ansible_user: vagrant
     ansible_password: vagrant
 EOF
@@ -114,7 +114,7 @@ all:
   vars:
     # connection configuration.
     # see https://github.com/rgl/terraform-libvirt-ansible-windows-example/blob/master/README.md#windows-management
-    # see https://docs.ansible.com/ansible-core/2.13/collections/ansible/builtin/psrp_connection.html
+    # see https://docs.ansible.com/ansible-core/2.14/collections/ansible/builtin/psrp_connection.html
     ansible_user: vagrant
     ansible_password: vagrant
     ansible_connection: psrp
