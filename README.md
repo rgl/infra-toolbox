@@ -160,6 +160,15 @@ Run the playbook:
 ansible-playbook playbook.yml #-vvv
 ```
 
+## Renovate
+
+List this repository dependencies (and which have newer versions):
+
+```bash
+export GITHUB_COM_TOKEN='YOUR_GITHUB_PERSONAL_TOKEN'
+./renovate.sh
+```
+
 ## Example Repositories
 
 * Packer/Ansible/Debian/Windows:

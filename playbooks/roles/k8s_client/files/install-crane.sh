@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # see https://github.com/google/go-containerregistry/releases
-version="$CRANE_VERSION"
+version="${CRANE_VERSION:-0.12.1}"
 
 # bail when already installed.
 if [ -x "/usr/local/bin/crane" ]; then
